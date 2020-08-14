@@ -68,7 +68,7 @@ class Game extends React.Component{
     }else{
       this.state.run = false
       clearTimeout(this.state.timerId )
-      this.setState({isChange:"Start",remainingTime:this.state.timeLeft})
+      this.setState({isChange:"Start",remainingTime:this.state.timeLeft,typed:``,untyped:``})
       this.state.timeLeft = 0
     }
   }
@@ -101,6 +101,7 @@ class Game extends React.Component{
   }
 
   handleKeyupEvent=(e)=>{
+    if (this.state.run ==false) {return}
     if (e.key !== this.state.unTyped.substring(0,1)) { return this.setState({failureTyped:this.state.failureTyped+1})}
        this.state.typed  += this.state.unTyped.substring(0,1)
        this.state.unTyped = this.state.unTyped.substring(1)
